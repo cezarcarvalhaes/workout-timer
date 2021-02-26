@@ -2,7 +2,6 @@ import React from 'react';
 import {
 	Header,
 	Title,
-	Button,
 	Left,
 	Right,
 	Body,
@@ -11,15 +10,13 @@ import {
 
 const AppHeader = () => (
 	<Header>
-		<Left>
-			<Button transparent>
-				<Icon name="menu" />
-			</Button>
-		</Left>
+		<Left />
 		<Body>
 			<Title>Header</Title>
 		</Body>
-		<Right />
+		<Right>
+			<Icon type="FontAwesome5" name="folder-plus" />
+		</Right>
 	</Header>
 );
 

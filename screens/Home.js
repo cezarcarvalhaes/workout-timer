@@ -1,39 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Footer,
-  FooterTab,
-  Button,
-  Left,
-  Right,
-  Body,
-  Icon,
-  Text,
+	Container,
+	Content,
+	Button,
+	Fab,
+	Text,
+	Icon,
+	View,
 } from 'native-base';
+import { Modal } from 'react-native';
+import Header from '../components/Header';
 
 const Home = ({ navigation }) => {
-  return (
-    <Container>
-      <Content padder>
-        <Text>This is Content Section</Text>
-        <Button
-        onPress={() => navigation.navigate('Details')}
-      >
-      <Text>Click here</Text>
-      </Button>
-      </Content>
-      <Footer>
-        <FooterTab>
-          <Button full>
-            <Text>Footer</Text>
-          </Button>
-        </FooterTab>
-      </Footer>
-    </Container>
-  );
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	return (
+		<Container>
+			<Modal
+				animationType="slide"
+				transparent
+				visible={isModalOpen}
+				onRequestClose={() => {
+					setIsModalOpen(!isModalOpen);
+				}}
+			>
+				<View
+					style={{
+						flex: 1,
+						justifyContent: 'center',
+						alignItems: 'center',
+						backgroundColor: '#fff',
+					}}
+				>
+					<Text>
+            I'm a modal
+					</Text>
+					<Button onPress={() => setIsModalOpen(!isModalOpen)}>
+						<Text>Close</Text>
+					</Button>
+				</View>
+			</Modal>
+			<Header />
+			<Content padder contentContainerStyle={{ flex: 1 }}>
+				<Text>This is Content Section</Text>
+				<Fab position="bottomRight" onPress={() => setIsModalOpen(true)}>
+					<Icon type="FontAwesome5" name="plus" />
+				</Fab>
+			</Content>
+		</Container>
+	);
 };
 
 export default Home;
